@@ -1,0 +1,18 @@
+{
+  "name": "aoc",
+  "version": "1.0.0",
+  "description": "Advent of Code",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/core01/advent-of-code.git"
+  },
+  "author": "Roman Sadoyan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/core01/advent-of-code/issues"
+  },
+  "type": "module"
+}
