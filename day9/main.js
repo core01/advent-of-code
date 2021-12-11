@@ -1,55 +1,13 @@
-import {readFile} from '../utils.js'
-
-const getAdjacentLocations = (rows, i, j) => {
-    let left = Infinity
-    let right = Infinity
-    let top = Infinity
-    let bottom = Infinity
-    let topCoordinates = []
-    let bottomCoordinates = []
-    let leftCoordinates = []
-    let rightCoordinates = []
-    let centerCoordinates = [i, j]
-    let center = parseInt(rows[i][j], 10)
+import {getMatrixAdjacentLocations, readFile} from '../utils.js'
 
 
-    if (i > 0) {
-        top = parseInt(rows[i - 1][j], 10)
-        topCoordinates = [i - 1, j]
-    }
-    if (i + 1 < rows.length) {
-        bottom = parseInt(rows[i + 1][j], 10)
-        bottomCoordinates = [i + 1, j]
-    }
-    if (j > 0) {
-        left = parseInt(rows[i][j - 1], 10)
-        leftCoordinates = [i, j - 1]
-    }
-    if (j + 1 < rows[i].length) {
-        right = parseInt(rows[i][j + 1], 10)
-        rightCoordinates = [i, j + 1]
-    }
-
-    return {
-        bottom,
-        bottomCoordinates,
-        center,
-        centerCoordinates,
-        left,
-        leftCoordinates,
-        right,
-        rightCoordinates,
-        top,
-        topCoordinates,
-    }
-}
 
 const getFirst = () => {
     const rows = readFile()
     const min = []
     for (let i = 0; i < rows.length; i++) {
         for (let j = 0; j < rows[i].length; j++) {
-            const {left, top, right, bottom, center} = getAdjacentLocations(rows, i, j)
+            const {left, top, right, bottom, center} = getMatrixAdjacentLocations(rows, i, j)
             const candidates = [right, left, bottom, top].filter(isFinite)
 
             if (candidates.every(el => center < el)) {
@@ -71,7 +29,7 @@ const findAllMoreValues = (rows, i, j, compareValue) => {
         rightCoordinates,
         top,
         topCoordinates,
-    } = getAdjacentLocations(rows, i, j)
+    } = getMatrixAdjacentLocations(rows, i, j)
     let coordinates = []
 
     for (let [key, location] of [[left, leftCoordinates], [right, rightCoordinates], [top, topCoordinates], [bottom, bottomCoordinates]]) {
@@ -95,7 +53,7 @@ const findAllLessValues = (rows, i, j, compareValue) => {
         rightCoordinates,
         top,
         topCoordinates,
-    } = getAdjacentLocations(rows, i, j)
+    } = getMatrixAdjacentLocations(rows, i, j)
     let coordinates = []
 
     for (let [key, location] of [[left, leftCoordinates], [right, rightCoordinates], [top, topCoordinates], [bottom, bottomCoordinates]]) {
@@ -123,7 +81,7 @@ const getSecond = () => {
             const {
                 center,
                 centerCoordinates,
-            } = getAdjacentLocations(rows, i, j)
+            } = getMatrixAdjacentLocations(rows, i, j)
 
             if (center === 9 || visitedCoordinates.some(el => el[0] === i && el[1] === j)) continue
 
