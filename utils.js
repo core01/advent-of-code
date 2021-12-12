@@ -89,3 +89,5 @@ export const getMatrixAdjacentLocations = (rows, i, j) => {
         topCoordinates,
     }
 }
+
+export const isLowerCase = (str) => str.toLowerCase() === str
