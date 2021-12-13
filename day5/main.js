@@ -1,9 +1,8 @@
-import {readFile} from '../utils.js'
+import {generateMatrixByMaxValue, readFile} from '../utils.js'
 
 const inputData = readFile()
 
 const findMinMaxValues = (value1, value2) => value1 > value2 ? [value2, value1] : [value1, value2]
-const generateMatrixByMaxValue = (maxValue) => Array(maxValue + 1).fill(0).map(() => Array(maxValue + 1).fill(0))
 
 function isLinear(x1, y1, x2, y2) {
     return (x1 === x2 || y1 === y2)
@@ -27,7 +26,7 @@ const prepareData = (inputData) => {
 
 const processResult = (processLinearOnly = false) => {
     const [preparedData, maxValue] = prepareData(inputData, false)
-    const matrix = generateMatrixByMaxValue(maxValue)
+    const matrix = generateMatrixByMaxValue(maxValue, maxValue)
 
     let numberOfLinesOverlap = 0
     const visitedCoordinates = []

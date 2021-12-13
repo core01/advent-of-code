@@ -91,3 +91,5 @@ export const getMatrixAdjacentLocations = (rows, i, j) => {
 }
 
 export const isLowerCase = (str) => str.toLowerCase() === str
+
+export const generateMatrixByMaxValue = (maxValueX, maxValueY) => Array(maxValueY + 1).fill(0).map(() => Array(maxValueX + 1).fill(0))
