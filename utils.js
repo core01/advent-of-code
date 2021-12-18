@@ -1,7 +1,8 @@
 import fs from 'fs'
+import path from 'path';
 
-export const readFile = () => {
-    return fs.readFileSync(process.argv[2], 'utf8').split('\n').filter(Boolean)
+export const readFile = (fileName) => {
+    return fs.readFileSync(process.argv[2] || path.join(path.resolve(), fileName), 'utf8').split('\n').filter(Boolean)
 }
 
 export const sumReducer = (previousValue, currentValue) => previousValue + currentValue
