@@ -1,11 +1,22 @@
 import fs from 'fs'
-import path from 'path';
+import path from 'path'
 
-export const readFile = (fileName) => {
-    return fs.readFileSync(process.argv[2] || path.join(path.resolve(), fileName), 'utf8').split('\n').filter(Boolean)
+export const readFile = (fileName, {filterEmptyLines = true} = {}) => {
+    const rows = fs
+        .readFileSync(
+            process.argv[2] || path.join(path.resolve(), fileName),
+            'utf8',
+        )
+        .split('\n')
+
+    if (filterEmptyLines) {
+        return rows.filter(Boolean)
+    }
+    return rows
 }
 
-export const sumReducer = (previousValue, currentValue) => previousValue + currentValue
+export const sumReducer = (previousValue, currentValue) =>
+    previousValue + currentValue
 
 export const sumTo = (n) => {
     let sum = 0
@@ -68,7 +79,6 @@ export const getMatrixAdjacentLocations = (rows, i, j) => {
         leftBottomCoordinates = [i + 1, j - 1]
     }
 
-
     return {
         bottom,
         bottomCoordinates,
@@ -93,7 +103,13 @@ export const getMatrixAdjacentLocations = (rows, i, j) => {
 
 export const isLowerCase = (str) => str.toLowerCase() === str
 
-export const generateMatrixByMaxValue = (maxValueX, maxValueY) => Array(maxValueY + 1).fill(0).map(() => Array(maxValueX + 1).fill(0))
+export const generateMatrixByMaxValue = (maxValueX, maxValueY) =>
+    Array(maxValueY + 1)
+        .fill(0)
+        .map(() => Array(maxValueX + 1).fill(0))
 
-export const hex2bin = data => data.split('').map(i =>
-    parseInt(i, 16).toString(2).padStart(4, '0')).join('');
+export const hex2bin = (data) =>
+    data
+        .split('')
+        .map((i) => parseInt(i, 16).toString(2).padStart(4, '0'))
+        .join('')
