@@ -113,3 +113,16 @@ export const hex2bin = (data) =>
         .split('')
         .map((i) => parseInt(i, 16).toString(2).padStart(4, '0'))
         .join('')
+
+
+export const printMatrix = (matrix) => {
+    let printableMatrix = [...matrix]
+    for (let i = 0; i < printableMatrix.length; i++) {
+        for (let j = 0; j < printableMatrix[i].length; j++) {
+            printableMatrix[i][j] = printableMatrix[i][j] ? '#' : '.'
+        }
+        printableMatrix[i] = printableMatrix[i].join(' ')
+    }
+
+    console.log(printableMatrix.join('\n'))
+}

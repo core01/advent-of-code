@@ -1,18 +1,6 @@
-import {generateMatrixByMaxValue, readFile} from '../../utils.js'
+import {generateMatrixByMaxValue, readFile, printMatrix} from '../../utils.js'
 
 const inputData = readFile()
-
-const printMatrix = (matrix) => {
-    let printableMatrix = [...matrix]
-    for (let i = 0; i < printableMatrix.length; i++) {
-        for (let j = 0; j < printableMatrix[i].length; j++) {
-            printableMatrix[i][j] = printableMatrix[i][j] ? '#' : '.'
-        }
-        printableMatrix[i] = printableMatrix[i].join(' ')
-    }
-
-    console.log(printableMatrix.join('\n'))
-}
 
 const getResult = () => {
     let rows = []
